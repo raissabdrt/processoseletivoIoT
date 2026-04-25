@@ -1,7 +1,93 @@
 {
   "version": 1,
-  "author": "Uri Shaked",
+  "author": "raissabdrt",
   "editor": "wokwi",
-  "parts": [ { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} } ],
-  "connections": [ [ "esp:TX", "$serialMonitor:RX", "", [] ], [ "esp:RX", "$serialMonitor:TX", "", [] ] ]
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -80,
+      "left": 230,
+      "attrs": { "temperature": "26", "humidity": "55" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_ok",
+      "top": 80,
+      "left": 230,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_med",
+      "top": 140,
+      "left": 230,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_err",
+      "top": 200,
+      "left": 230,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 80,
+      "left": 320,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 140,
+      "left": 320,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 200,
+      "left": 320,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 280,
+      "left": 230,
+      "attrs": { "color": "blue" }
+    }
+  ],
+  "connections": [
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []],
+
+    ["esp:3V3",  "dht1:VCC",  "red",    ["h10"]],
+    ["dht1:SDA", "esp:D4",    "green",  ["v10"]],
+    ["esp:GND",  "dht1:GND",  "black",  ["h10"]],
+
+    ["esp:D25",   "led_ok:A",  "green",  ["h0"]],
+    ["led_ok:C",  "r1:1",      "green",  ["h0"]],
+    ["r1:2",      "esp:GND",   "black",  ["v20", "h-80"]],
+
+    ["esp:D26",   "led_med:A", "yellow", ["h0"]],
+    ["led_med:C", "r2:1",      "yellow", ["h0"]],
+    ["r2:2",      "esp:GND",   "black",  ["v20", "h-80"]],
+
+    ["esp:D27",   "led_err:A", "red",    ["h0"]],
+    ["led_err:C", "r3:1",      "red",    ["h0"]],
+    ["r3:2",      "esp:GND",   "black",  ["v20", "h-80"]],
+
+    ["esp:D14",   "btn1:1.l",  "blue",   ["h0"]],
+    ["btn1:2.l",  "esp:GND",   "black",  ["v10"]]
+  ]
 }
