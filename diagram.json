@@ -68,8 +68,8 @@
     }
   ],
   "connections": [
-    ["esp:TX",  "$serialMonitor:RX", "", []],
-    ["esp:RX",  "$serialMonitor:TX", "", []],
+    ["esp:TX",    "$serialMonitor:RX", "", []],
+    ["esp:RX",    "$serialMonitor:TX", "", []],
 
     ["esp:3V3",   "dht1:VCC",  "red",    ["h10"]],
     ["dht1:SDA",  "esp:4",     "green",  ["v10"]],
