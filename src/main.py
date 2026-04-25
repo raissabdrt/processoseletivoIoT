@@ -97,7 +97,7 @@ def main():
     global tick_sensor, tick_pisca, tick_botao
     global led_err_toggle
 
-    imprimir("Sistema iniciado")
+    imprimir("Sistema iniciado - Teste")
     imprimir("Alerta em {}C | Critico em {}C".format(TEMP_ALTA, TEMP_CRITICA))
     acender_led(NORMAL)
 
